@@ -16,7 +16,7 @@ def dispatch(state: StorageState, requested_kw: float, duration_h: float, charge
     if requested_kw >= 0:
         max_deliverable=max(0.0,(e-min_e)*discharge_eff/duration_h) if duration_h else 0.0
         actual=min(requested_kw,max_deliverable)
-        new_e=e-actual*duration_h*discharge_eff
+        new_e=e-actual*duration_h/discharge_eff
     else:
         charge_kw=-requested_kw
         max_absorb=max(0.0,(max_e-e)/(charge_eff*duration_h)) if duration_h else 0.0
